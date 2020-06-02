@@ -2,3 +2,4 @@
 .env
 .vscode/
 create_key.py
+*.pyc
