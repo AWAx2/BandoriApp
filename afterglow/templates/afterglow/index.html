@@ -1,0 +1,21 @@
+{% extends 'afterglow/base.html' %}
+{% block title %}Afterglowキャラクター判別サイト{% endblock %}
+
+{% block content %}
+<div>
+    <h4 class="mt-4 mb-5 border-bottom">Afterglowキャラクター判別</h4>
+    <p>画像を選択して判別ボタンをクリックしてください。</p>
+    <form action="{% url 'afterglow:index' %}" method="post" class="form" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+        <div class="custom-file">
+            {{ form.image }}
+            <label class="custom-file-label" for="customFile">
+                推定したいファイルを選択してください。
+            </label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">推定する！</button>
+    </form>
+</div>
+{% endblock %}

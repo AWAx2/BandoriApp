@@ -5,5 +5,5 @@ from . import views
 app_name = 'afterglow'
 
 urlpatterns = [
-    path('', views.IndexView.as_view(), name='index'),
+    path('', views.TopPageView.as_view(), name='toppage'),
 ]

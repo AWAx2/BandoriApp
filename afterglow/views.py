@@ -4,5 +4,5 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 
 
-class IndexView(generic.TemplateView):
-    template_name = 'index.html'
+class TopPageView(generic.TemplateView):
+    template_name = 'afterglow/top.html'
