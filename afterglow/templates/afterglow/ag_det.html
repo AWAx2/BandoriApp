@@ -1,0 +1,23 @@
+{% extends 'afterglow/base.html' %}
+{% load static %}
+
+{% block title %}Afterglowキャラクター判別ページ{% endblock %}
+
+{% block contents %}
+    <div class="container" style="padding-top: 70px">
+    <h4 class="mt-3 mb-5 ">Afterglowのキャラクターを判別しよう！</h4>
+    <p>画像ファイルを選択して＜判別開始！＞ ボタンをクリックしてください。</p>
+     <form action="{% url 'afterglow:result' %}" method="post" class="form" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+        <div class="custom-file">
+            {{ form.image }}
+            <label class="custom-file-label" for="customFile">
+                画像ファイルを選択してください。
+            </label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">判別開始！</button>
+     </form>
+    </div>
+{% endblock %}

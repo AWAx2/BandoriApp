@@ -1,8 +1,8 @@
 {% extends 'afterglow/base.html' %}
-{% block title %}推定結果{% endblock %}
+{% block title %}RESULT{% endblock %}
 
-{% block content %}
-<div>
+{% block contents %}
+<div class="container" style="padding-top: 70px">
     <h4 class="mt-4 mb-5 border-bottom">推定結果</h4>
 
     <table class='table'>
@@ -15,18 +15,10 @@
                 <td>画像ファイル</td>
                 <td><img class='preview-img' src={{ photo_data }} ></img></td>
                 </tr>
-            <tr>
-                <td>推定ラベル</td>
-                <td>{{ predicted }}</td>
-            </tr>
-            <tr>
-                <td>推定確率</td>
-                <td>{{ percentage }} %</td>
-            </tr>
         </tbody>
     </table>
 
-    <a href = "{% url 'carbike:index' %}" class="btn btn-primary">画像選択メニューに戻る</a>
+    <a href = "{% url 'afterglow:afterglow_det' %}" class="btn btn-primary">画像選択メニューに戻る</a>
 
 </div>
 {% endblock %}

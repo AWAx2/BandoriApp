@@ -1,21 +1,58 @@
 {% extends 'afterglow/base.html' %}
-{% block title %}Afterglowキャラクター判別サイト{% endblock %}
+{% load static %}
+{% block title %}HOME | ZAWA{% endblock %}
 
-{% block content %}
-<div>
-    <h4 class="mt-4 mb-5 border-bottom">Afterglowキャラクター判別</h4>
-    <p>画像を選択して判別ボタンをクリックしてください。</p>
-    <form action="{% url 'afterglow:index' %}" method="post" class="form" enctype="multipart/form-data">
-    {% csrf_token %}
-    <div class="form-group">
-        <div class="custom-file">
-            {{ form.image }}
-            <label class="custom-file-label" for="customFile">
-                推定したいファイルを選択してください。
-            </label>
-        </div>
+{% block header %}
+      <header class="masthead text-center text-white">
+    <div class="masthead-content">
+      <div class="container">
+        <h1 class="masthead-heading mb-0"></h1>
+        <h2 class="masthead-subheading mb-0">AIアプリで遊んでみよう!</h2>
+        <a href="{% url 'afterglow:afterglow_det' %}" class="btn btn-primary btn-xl rounded-pill mt-5 active">Go Detection!</a>
+      </div>
     </div>
-    <button type="submit" class="btn btn-primary">推定する！</button>
-    </form>
-</div>
+    <div class="bg-circle-1 bg-circle"></div>
+    <div class="bg-circle-2 bg-circle"></div>
+    <div class="bg-circle-3 bg-circle"></div>
+    <div class="bg-circle-4 bg-circle"></div>
+  </header>
+{% endblock %}
+
+{% block contents %}
+      <section>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 order-lg-2">
+          <div class="p-5">
+            <img class="img-fluid rounded-circle" src="{% static 'afterglow/img/01.jpg' %}" alt="">
+          </div>
+        </div>
+        <div class="col-lg-6 order-lg-1">
+          <div class="p-5">
+            <h2 class="display-4">WORKS</h2>
+            <p>BanG Dream!に登場するバンドであるAfterglowのメンバーのキャラクター判別ができます。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="p-5">
+            <img class="img-fluid rounded-circle" src="{% static 'afterglow/img/02.jpg' %}" alt="">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="p-5">
+            <h2 class="display-4">About Me</h2>
+            <p>滋賀大学 経済学部 情報管理学科</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 {% endblock %}
