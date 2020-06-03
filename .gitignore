@@ -3,3 +3,5 @@
 .vscode/
 create_key.py
 *.pyc
+*.h5
+*.xml
