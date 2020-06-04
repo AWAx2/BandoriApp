@@ -11,10 +11,17 @@ graph = tf.compat.v1.get_default_graph()
 class Photo(models.Model):
     image = models.ImageField(upload_to='photos')
 
-    IMAGE_SIZE = 64
-    MIN_SIZE = 32
+    IMAGE_SIZE = (64, 64)
+    MIN_SIZE = (32, 32)
     MODEL_FILE_PATH = './afterglow/ml_models/afterglow.h5'
-    classes = ['ran', 'moca', 'himari', 'tsugumi', 'tomoe']
+    name_dic = {
+        'ran': (0, 0, 255),
+        'moca': (152, 251, 152),
+        'himari': (193, 182, 255),
+        'tsugumi': (150, 253, 253),
+        'tomoe': (128, 0, 128),
+    }
+    classes = [i for i in name_dic.keys()]
 
     def detect_main(self):
         model = None
@@ -23,31 +30,33 @@ class Photo(models.Model):
             model = tf.keras.models.load_model(self.MODEL_FILE_PATH)
 
             img_data = self.image.read()
-            image = io.BytesIO(img_data)
+            img_bin = io.BytesIO(img_data)
+            img_pil = Image.open(img_bin)
+            image = np.asarray(img_pil)
+
 
             # 顔検出実行
             rec_image = self.detect_face(image, model)
+            rec_image = cv2.cvtColor(rec_image, cv2.COLOR_BGR2RGB)
 
-            return image
+            return rec_image
 
     def detect_face(self, image, model):
         img_gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
-        cascade_xml = './cascade/lbpcascade_animeface.xml'
+        cascade_xml = './afterglow/cascade/lbpcascade_animeface.xml'
         cascade = cv2.CascadeClassifier(cascade_xml)
 
         # 顔検出の実行
-        faces = cascade.detectMultiScale(
-            img_gray, scaleFactor=1.11, minNeighbors=2, minSize=self.MIN_SIZE)
+        faces = cascade.detectMultiScale(img_gray, scaleFactor=1.11, minNeighbors=2, minSize=self.MIN_SIZE)
 
         if len(faces) > 0:
             for (x, y, w, h) in faces:
                 face_img = image[y:y+h, x:x+w]
                 face_img = cv2.resize(face_img, self.IMAGE_SIZE)
                 # BGR->RGB変換、float型変換
-                face_img = cv2.cvtColor(
-                    face_img, cv2.COLOR_BGR2RGB).astype(np.float32)
+                face_img = cv2.cvtColor(face_img, cv2.COLOR_BGR2RGB).astype(np.float32)
                 name, score = self.prediction(face_img, model)
-                col = self.classes[name]
+                col = self.name_dic[name]
                 # 認識結果を元画像に表示
                 if score >= 0.60:
                     cv2.rectangle(image, (x, y), (x+w, y+h), col, 2)
