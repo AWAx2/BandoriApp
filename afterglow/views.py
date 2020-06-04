@@ -31,15 +31,12 @@ class ResultView(generic.View):
 
         photo = Photo(image=form.cleaned_data['image'])
         image = photo.detect_main()
-        img_res = Image.fromarray(image.astype(np.uint8))
-
-        cv2.imwrite('./afterglow/tmp/test.jpg', image)
         template = loader.get_template('afterglow/result.html')
 
 
         context = {
             'photo_name':photo.image.name,
-            'photo_data':img_res,
+            'photo_data':image,
         }
 
         return HttpResponse(template.render(context, request))

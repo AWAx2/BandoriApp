@@ -1,9 +1,10 @@
 from django.db import models
+from django.core.files.uploadedfile import InMemoryUploadedFile
 
 import tensorflow as tf
 import numpy as np
 import cv2
-import io
+import io, base64
 from PIL import Image
 
 graph = tf.compat.v1.get_default_graph()
@@ -15,10 +16,10 @@ class Photo(models.Model):
     MIN_SIZE = (32, 32)
     MODEL_FILE_PATH = './afterglow/ml_models/afterglow.h5'
     name_dic = {
-        'ran': (0, 0, 255),
+        'ran': (255, 0, 0),
         'moca': (152, 251, 152),
-        'himari': (193, 182, 255),
-        'tsugumi': (150, 253, 253),
+        'himari': (255, 182, 193),
+        'tsugumi': (253, 253, 150),
         'tomoe': (128, 0, 128),
     }
     classes = [i for i in name_dic.keys()]
@@ -37,9 +38,17 @@ class Photo(models.Model):
 
             # 顔検出実行
             rec_image = self.detect_face(image, model)
-            rec_image = cv2.cvtColor(rec_image, cv2.COLOR_BGR2RGB)
+            rec_image = Image.fromarray(np.uint8(rec_image))
+            # メモリ上への仮保管先を生成
+            pred_bin = io.BytesIO()
+            # pillowのImage.saveメソッドで仮保管先へ保存
+            rec_image.save(pred_bin, format='JPEG')
+            # 保存したデータをbase64encodeメソッド読み込み
+            # -> byte型からstr型に変換
+            # -> 余分な区切り文字( ' )を削除
+            b64_img = base64.b64encode(pred_bin.getvalue()).decode().replace("'", "")
 
-            return rec_image
+            return b64_img
 
     def detect_face(self, image, model):
         img_gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
@@ -61,11 +70,11 @@ class Photo(models.Model):
                 if score >= 0.60:
                     cv2.rectangle(image, (x, y), (x+w, y+h), col, 2)
                     cv2.putText(image, '%s:%d%%' % (name, score*100),
-                                (x+10, y+h-10), cv2.FONT_HERSHEY_SIMPLEX, 1.0, col, 2)
+                                (x+10, y+h-10), cv2.FONT_HERSHEY_SIMPLEX, 0.7, col, 2)
                 else:
                     cv2.rectangle(image, (x, y), (x+w, y+h), (192, 192, 192), 2)
                     cv2.putText(image, '%s:%d%%' % ('others', score*100),
-                                (x+10, y+h-10), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (192, 192, 192), 2)
+                                (x+10, y+h-10), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (192, 192, 192), 2)
         else:
             pass
         return image
@@ -83,3 +92,9 @@ class Photo(models.Model):
 
         # 1番予測確率が高いキャラ名を返す
         return result[0]
+
+    def image_src(self, image):
+        with self.image.open(image) as img:
+            base64_img = base64.b64encode(img.read()).decode()
+
+            return 'data:' + img.file.content_type + ';base64,' + base64_img
