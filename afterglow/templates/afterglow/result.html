@@ -1,9 +1,9 @@
 {% extends 'afterglow/base.html' %}
-{% block title %}RESULT{% endblock %}
+{% block title %}キャラクター判別結果ページ{% endblock %}
 
 {% block contents %}
 <div class="container" style="padding-top: 70px">
-    <h4 class="mt-4 mb-5 border-bottom">推定結果</h4>
+    <h4 class="mt-4 mb-4">判別結果</h4>
 
     <table class='table'>
         <tbody>
@@ -12,7 +12,7 @@
                 <td>{{ photo_name }}</td>
             </tr>
             <tr>
-                <td>画像ファイル</td>
+                <td>結果画像</td>
                 <td><img class='preview-img' src=data:image/jpeg;base64,{{ photo_data }}></img></td>
                 </tr>
         </tbody>
