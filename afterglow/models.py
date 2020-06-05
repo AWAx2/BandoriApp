@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.core.validators import FileExtensionValidator
 
 import tensorflow as tf
 import numpy as np

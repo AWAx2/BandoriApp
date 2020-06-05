@@ -1,0 +1,11 @@
+{% extends 'afterglow/base.html' %}
+{% load static %}
+
+{% block title %}入力画像エラーページ{% endblock %}
+
+{% block contents %}
+    <div class="container" style="padding-top: 70px">
+    <h4 class="mt-3 mb-5 ">画像ファイルを選択してください。</h4>
+        <a href = "{% url 'afterglow:afterglow_det' %}" class="btn btn-primary">画像選択メニューに戻る</a>
+    </div>
+{% endblock %}

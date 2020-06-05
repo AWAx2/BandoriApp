@@ -37,7 +37,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
               <ul class="navbar-nav mr-auto">
                   <li class="nav-item">
-                      <a class="nav-link" href="{% url 'afterglow:index' %}">ABOUT</a>
+                      <a class="nav-link" href="{% url 'afterglow:my_profile' %}">PROFILE</a>
                   </li>
                   <li class="nav-item">
                       <a class="nav-link" href="{% url 'afterglow:afterglow_det' %}">WORKS</a>
@@ -62,8 +62,8 @@
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="{% static 'afterglow/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'afterglow/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>

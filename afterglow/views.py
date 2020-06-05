@@ -7,10 +7,6 @@ from django.contrib import messages
 from .forms import PhotoForm
 from .models import Photo
 
-from PIL import Image
-import numpy as np
-import cv2
-
 
 class IndexView(generic.TemplateView):
     template_name = 'afterglow/index.html'
@@ -27,7 +23,7 @@ class ResultView(generic.View):
     def post(self, request):
         form = PhotoForm(request.POST, request.FILES)
         if not form.is_valid():
-            raise ValueError('Formが不正です')
+            return redirect('afterglow:input_error')
 
         photo = Photo(image=form.cleaned_data['image'])
         image = photo.detect_main()
@@ -40,3 +36,11 @@ class ResultView(generic.View):
         }
 
         return HttpResponse(template.render(context, request))
+
+
+class InputErrorView(generic.TemplateView):
+    template_name = 'afterglow/input_error.html'
+
+
+class MyProfileView(generic.TemplateView):
+    template_name = 'afterglow/my_profile.html'
