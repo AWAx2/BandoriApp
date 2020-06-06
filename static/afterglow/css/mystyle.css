@@ -11,9 +11,15 @@ footer {
 .my-div-style {
     margin-top:6rem;
 }
+
 .custom-file {
-  overflow: hidden;
+    overflow: hidden;
 }
+
 .custom-file-label {
-  white-space: nowrap;
+    white-space: nowrap;
+}
+
+section.my_profile {
+     background-color: #fa6775;
 }

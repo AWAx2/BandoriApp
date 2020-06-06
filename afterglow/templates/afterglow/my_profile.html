@@ -1,12 +1,120 @@
 {% extends 'afterglow/base.html' %}
 {% load static %}
-
 {% block title %}プロフィールページ{% endblock %}
 
 {% block contents %}
-    <section id="about" class="hero is-success is-fullheight" style="background-color: rgb(63, 81, 181);">
-    <div class="container" style="padding-top: 70px">
-    <h1 class="title is-size-2" style="padding-left: 0.3em; border-left: 0.3em solid rgb(255, 255, 255);">何者なのか</h1>
-    </div>
+    <article style="padding-top: 100px; background-color: #f52549">
+    <h1 style="padding-left: 30px; color: #fff">プロフィール</h1>
+    <section class="my_profile">
+        <div class="container" style="padding-top: 60px">
+            <h2 class="title is-size-2" style="padding-left: 0.3em; border-left: 0.3em solid rgb(255, 255, 255); color: #fff">学歴</h2>
+                <table class="table" style="color: #fff">
+                    <tr><th>卒業・卒業予定年</th><th>学校名</th></tr>
+                    <tr><td width="35%">2012.3</td><td>長野県大町高等学校（現：大町岳陽高等学校）</td></tr>
+                    <tr><td>2015.3(中途退学)</td><td>愛知学院大学商学部商学科</td></tr>
+                    <tr><td>2020.9(卒業予定)</td><td>滋賀大学経済学部情報管理学科</td></tr>
+                </table>
+        </div>
     </section>
+
+    <section class="my_profile">
+        <div class="container" style="padding-top: 60px">
+            <h2 class="title is-size-2" style="padding-left: 0.3em; border-left: 0.3em solid rgb(255, 255, 255); color: #fff">職歴</h2>
+                <table class="table" style="color: #fff">
+                    <tr><th>期間</th><th>企業名</th></tr>
+                    <tr><td width="35%">2012.5～2013.5</td><td>京楽エンタテインメント・リテイルズ株式会社</td></tr>
+                    <tr><td>2016.10～2018.12</td><td>株式会社タイトー</td></tr>
+                </table>
+        </div>
+    </section>
+
+    <section class="my_profile">
+        <div class="container" style="padding-top: 60px">
+            <h2 class="title is-size-2" style="padding-left: 0.3em; border-left: 0.3em solid rgb(255, 255, 255); color: #fff">研究実績</h2>
+                <table class="table" style="color: #fff">
+                    <tr><th>タイトル</th><th>内容</th></tr>
+                    <tr><td width="35%">色識別によるアンケートシステム</td><td>
+                        大学の講義で学生に事前に色紙を配布し、「Aだと思うかBだと思うか」というようなアンケートをとる際に色紙を掲げてもらうことで掲げられた色紙の枚数を瞬時に数え上げる事ができるシステムです。主にOpenCVを用いて処理が行われています。本来ならば今春から実際に大学の講義で利用される予定でしたが、コロナウィルスの影響で導入が遅れています。
+                    </td></tr>
+                    <tr><td>バスケットボールのデータ採取</td><td>
+                        滋賀大学は滋賀県のプロバスケットボールチームと提携協定を結んでおり、試合の映像からデータを分析、フィードバックを行うプロジェクトの中で私はデータ採取の作業を担当しています。深層学習を利用することで選手やボールの位置を特定し、そこからデータセットを作成しています。
+                    </td></tr>
+                </table>
+        </div>
+    </section>
+
+        <section class="my_profile">
+        <div class="container" style="padding-top: 60px">
+            <h2 class="title is-size-2" style="padding-left: 0.3em; border-left: 0.3em solid rgb(255, 255, 255); color: #fff">スキル</h2>
+                <table class="table" style="color: #fff">
+                    <tr><th>使用言語・ライブラリなど</th><th>経験</th></tr>
+                    <tr><td width="35%">Python3</td><td>
+                        主に研究で使用しています。データ採取や分析用のファイルは全てPythonで書いています。
+                    </td></tr>
+                    <tr><td>Java</td><td>
+                        大学の講義で使用しました。講義では代表的なソーティングのプログラムをいくつか作成しました。
+                    </td></tr>
+                    <tr><td>HTML&CSS</td><td>
+                        今回のサイト作成で使用しました。経験は浅いです。
+                    </td></tr>
+                    <tr><td>Numpy、Pandasなど</td><td>
+                        データ分析に使用される主要なライブラリは一通り使うことができます。
+                    </td></tr>
+                    <tr><td>TensorFlow</td><td>
+                        深層学習を用いた研究を行うときに使用しています。アニメキャラの画像認識モデルの作成にも使用しました。
+                    </td></tr>
+                    <tr><td>OpenCV</td><td>
+                        専門が画像認識分野なので、画像処理の必要があるときに使用しています。Pythonで書いています。
+                    </td></tr>
+                    <tr><td>Django</td><td>
+                        今回のサイト作成で使用しました。公式チュートリアルの投票アプリやブログサイトを作成して勉強した後、このサイトを作りました。
+                    </td></tr>
+                    <tr><td>Bootstrap4</td><td>
+                        ブログサイトや今回のサイト作成で使用しました。まだまだ勉強不足なことが多いです。
+                    </td></tr>
+                </table>
+        </div>
+    </section>
+
+        <section class="my_profile">
+        <div class="container" style="padding-top: 60px">
+            <h2 class="title is-size-2" style="padding-left: 0.3em; border-left: 0.3em solid rgb(255, 255, 255); color: #fff">開発環境</h2>
+                <table class="table" style="color: #fff">
+                    <tr><th>OSとIDE</th><th>補足</th></tr>
+                    <tr><td width="35%">Mac OS、Linux</td><td>
+                        LinuxはWindows 10にWSLを使ってUbuntuをインストールして使用しています。
+                    </td></tr>
+                    <tr><td>PyCharm</td><td>
+                        Pythonを使って作業をする際に使用しています。このサイトの作成にも使用しました。学生は無料でプロフェッショナル版が使えるのでとても感謝しています。
+                    </td></tr>
+                </table>
+        </div>
+    </section>
+
+        <section class="my_profile">
+        <div class="container" style="padding-top: 60px">
+            <h2 class="title is-size-2" style="padding-left: 0.3em; border-left: 0.3em solid rgb(255, 255, 255); color: #fff">その他ツール</h2>
+                <table class="table" style="color: #fff">
+                    <tr><th>名前</th><th>補足</th></tr>
+                    <tr><td width="35%">GitHub</td><td>
+                        個人的にソースコードを管理するために使用しています。チーム開発で使用したことはないので、プルリクエストの作成やレビューの経験はありません。
+                    </td></tr>
+                    <tr><td>Slack</td><td>
+                        大学のゼミや同じプロジェクトを行っているメンバーとの連絡や情報共有ツールとして使用しています。また、実際にデータサイエンティストやエンジニアとして働いている方々が情報共有を行っているコミュニティにも参加しています。
+                    </td></tr>
+                </table>
+        </div>
+    </section>
+
+            <section class="my_profile">
+        <div class="container" style="padding-top: 60px">
+            <h2 class="title is-size-2" style="padding-left: 0.3em; border-left: 0.3em solid rgb(255, 255, 255); color: #fff">資格</h2>
+                <table class="table" style="color: #fff">
+                    <tr><th>種類</th>
+                    <tr><td width="35%">JDLA Deep Learning for GENERAL</td></tr>
+                    <tr><td>普通自動車第一種免許</td></tr>
+                </table>
+        </div>
+    </section>
+    </article>
 {% endblock %}
