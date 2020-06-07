@@ -42,8 +42,8 @@
                   <li class="nav-item">
                       <a class="nav-link" href="{% url 'afterglow:afterglow_det' %}">WORKS</a>
                   </li>
-                  <li class="nav-item {% block contact %}{% endblock %}">
-                  <a class="nav-link" href="{% url 'afterglow:index' %}">CONTACT</a>
+                  <li class="nav-item" {% block active_inquiry %}{% endblock %}>
+                  <a class="nav-link" href="{% url 'afterglow:contact' %}">CONTACT</a>
                   </li>
               </ul>
             </div>
@@ -54,7 +54,7 @@
         {% block contents %}{% endblock %}
 
   <!-- Footer -->
-  <footer class="py-5 bg-black">
+  <footer class="py-5 bg-dark">
     <div class="container">
       <p class="m-0 text-center text-white small">Copyright &copy; ZAWA 2020</p>
     </div>

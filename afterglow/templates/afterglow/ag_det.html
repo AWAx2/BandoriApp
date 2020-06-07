@@ -4,9 +4,10 @@
 {% block title %}Afterglowキャラクター判別ページ{% endblock %}
 
 {% block contents %}
-    <div class="container" style="padding-top: 100px">
-    <h4 class="mt-3 mb-5 ">Afterglowのキャラクターを判別しよう！</h4>
-    <p>画像ファイルを選択して＜判別開始！＞ ボタンをクリックしてください。</p>
+    <body style="background-color: #6eb5c0" >
+    <div class="container">
+        <h1 class="mt-3 mb-5" style="font-size: 50px; padding-top: 100px; padding-left: 20px; border-bottom: solid 5px #fff; color: #fff">Afterglowのキャラクターを判別しよう！</h1>
+    <p style="color: #fff">画像ファイルを選択して＜判別開始！＞ ボタンをクリックしてください。</p>
      <form action="{% url 'afterglow:result' %}" method="post" class="form" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="form-group">
@@ -16,7 +17,8 @@
                 画像ファイルを選択(ここにドロップすることもできます)</label>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary">判別開始！</button>
+    <button type="submit" class="btn btn-primary" style="background-color: #6eb5c0; border-color: #fff; border-width: 4px">判別開始！</button>
      </form>
     </div>
+    </body>
 {% endblock %}

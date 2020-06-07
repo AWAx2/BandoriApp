@@ -6,6 +6,7 @@ from django.conf.urls.static import static
 app_name = 'afterglow'
 
 urlpatterns = [
+    path('contact/', views.ContactView.as_view(), name='contact'),
     path('profile/', views.MyProfileView.as_view(), name='my_profile'),
     path('afterglowdet/', views.AfterglowDet.as_view(), name='afterglow_det'),
     path('result/', views.ResultView.as_view(), name='result'),

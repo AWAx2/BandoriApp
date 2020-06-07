@@ -4,7 +4,7 @@ from django.views import generic
 from django.urls import reverse_lazy
 from django.http import HttpResponse
 from django.contrib import messages
-from .forms import PhotoForm
+from .forms import PhotoForm, ContactForm
 from .models import Photo
 
 
@@ -44,3 +44,8 @@ class InputErrorView(generic.TemplateView):
 
 class MyProfileView(generic.TemplateView):
     template_name = 'afterglow/my_profile.html'
+
+
+class ContactView(generic.FormView):
+    template_name = 'afterglow/contact.html'
+    form_class = ContactForm
