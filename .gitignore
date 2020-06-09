@@ -1,7 +1,7 @@
+.vscode/
 .idea/
 .env
-.vscode/
-create_key.py
 *.pyc
 *.h5
 *.xml
+create_key.py
