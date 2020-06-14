@@ -32,6 +32,7 @@ class Photo(models.Model):
             img_data = self.image.read()
             img_bin = io.BytesIO(img_data)
             img_pil = Image.open(img_bin)
+            img_pil = img_pil.convert('RGB')
             image = np.asarray(img_pil)
 
 
@@ -41,7 +42,7 @@ class Photo(models.Model):
             # メモリ上への仮保管先を生成
             pred_bin = io.BytesIO()
             # pillowのImage.saveメソッドで仮保管先へ保存
-            rec_image.save(pred_bin, format='JPEG')
+            rec_image.save(pred_bin, format='PNG')
             # 保存したデータをbase64encodeメソッド読み込み
             # -> byte型からstr型に変換
             # -> 余分な区切り文字( ' )を削除

@@ -3,17 +3,18 @@
 {% block title %}キャラクター判別結果ページ{% endblock %}
 
 {% block contents %}
-<div class="container" style="padding-top: 6rem">
-    <h4 class="mt-4 mb-4">判別結果</h4>
+    <body style="background-color: #6eb5c0">
+<div class="container">
+    <h1 class="mt-3 mb-5" style="font-size: 50px; padding-top: 100px; padding-left: 20px; border-bottom: solid 5px #fff; color: #fff">判別結果</h1>
 
-    <table class='table'>
+    <table class='table' style="color: #fff">
         <tbody>
             <tr>
-                <td>ファイル名</td>
+                <td  style="white-space: nowrap">ファイル名</td>
                 <td>{{ photo_name }}</td>
             </tr>
             <tr>
-                <td>結果画像</td>
+                <td style="white-space: nowrap">結果画像</td>
                 <td><img class='preview-img' src=data:image/jpeg;base64,{{ photo_data }}></img></td>
                 </tr>
         </tbody>
@@ -22,4 +23,5 @@
     <a href = "{% url 'afterglow:afterglow_det' %}" class="btn btn-primary">画像選択メニューに戻る</a>
 
 </div>
+    </body>
 {% endblock %}
