@@ -3,7 +3,7 @@ from django.template import loader
 from django.views import generic
 from django.urls import reverse_lazy
 from django.http import HttpResponse
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMessage
 from django.conf import settings
 from .forms import PhotoForm, ContactForm
 from .models import Photo
@@ -54,11 +54,12 @@ class ContactView(generic.FormView):
 
     def form_valid(self, form):
         name = form.cleaned_data['name']
-        email = form.cleaned_data['email']
+        from_email = form.cleaned_data['email']
         title = form.cleaned_data['title']
         message = form.cleaned_data['message']
         recipients = [settings.EMAIL_HOST_USER]
-        send_mail(title, message, email, recipients)
+        email = EmailMessage(title, message, from_email, recipients)
+        email.send()
         return redirect('afterglow:contact')
 
 
